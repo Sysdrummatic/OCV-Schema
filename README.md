@@ -1,9 +1,39 @@
 # OCV Schema
 
-An open, versioned format for a single CV. Apache-2.0.
+An open, versioned format for describing a single CV as data, with the tools to
+validate it offline. Apache-2.0.
 
-**Current status:** local 1.0.0 candidate. The npm package and GitHub Pages site
-have not been published. OpenCiVera integration is a later milestone.
+**Status:** local 1.0.0 candidate. The npm package (`ocvschema`) and the GitHub
+Pages site are not published yet. OpenCiVera integration is a later milestone.
+
+## What it is
+
+A CV is usually trapped in a layout: a PDF, a Word file or one service's
+database. OCV Schema separates the content from its presentation. A CV is one
+YAML or JSON document that any tool can check, upgrade and render in its own style.
+
+- **Specification** - the meaning and processing rules of a 1.0.0 document
+  ([docs/specification.md](docs/specification.md)).
+- **JSON Schema 2020-12** - the authoritative structural contract
+  ([schemas/1.0.0/schema.json](schemas/1.0.0/schema.json)).
+- **Reference library and `ocv` CLI** - parsing, validation, linting and
+  migrations, working fully offline, with generated TypeScript types.
+- **Browser editor** - a static demo with a form, YAML view, validation, QR codes
+  and a Basic visual style.
+- **Examples and conformance fixtures** - a portable test set for other
+  implementations.
+
+Design principles: the document is independent of any account, storage or
+service; unknown fields are errors unless they use the `x-*` extension prefix;
+released schemas never change in place; and the format version is separate from
+the npm package version, so older documents can always be validated and migrated.
+
+## Who it is for
+
+Developers building CV editors, importers, exporters or renderers who want a
+shared, checkable format, and people who want to keep their CV in a portable
+file they own. OpenCiVera is the intended first consumer, but conformance
+requires no OpenCiVera account or service.
 
 ## Start
 
