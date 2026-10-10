@@ -1,0 +1,7 @@
+ocv: "1.0.0"
+person:
+  first_name: ""
+  family_name: ""
+skills:
+  - name: "TypeScript"
+    level: 0
