@@ -1,0 +1,49 @@
+ocv: "1.0.0"
+person:
+  brand_initials: "AM"
+  first_name: "Anna"
+  family_name: "Michałowska"
+summary:
+  - position: "Software engineer"
+    description: "I build accessible web applications and reliable developer tools."
+    default: true
+contact:
+  - label: "Location"
+    value: "Warsaw, Poland"
+  - label: "E-mail"
+    value: "anna@example.com"
+    link: "mailto:anna@example.com"
+qr_codes:
+  - label: "Portfolio"
+    value: "https://example.com"
+    size: 130
+skills:
+  - name: "TypeScript"
+    level: 4
+tech_stack:
+  - "React"
+  - "Node.js"
+languages:
+  - name: "English"
+    level_text: "C1"
+    level: 4
+interests:
+  - "Cycling"
+experience:
+  - period: "2022–present"
+    company: "Example Studio"
+    role: "Software engineer"
+    highlights:
+      - "Built accessible editing tools for structured documents."
+      - "Maintained shared validation between browser and server."
+education:
+  - period: "2016–2020"
+    school: "Example University"
+    degree: "Computer science"
+    detail: "Bachelor's degree"
+courses:
+  - year: 2024
+    name: "Accessible web applications"
+gdpr_clause: ""
+x-example:
+  source: "Fictional sample; not a real person's CV."

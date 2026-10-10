@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sysdrummatic.github.io/OCV-Schema/schemas/1.0.0/schema.json",
+  "title": "OcvDocument",
+  "type": "object",
+  "properties": {
+    "ocv": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "OCV format version, independent of the library version."
+    },
+    "person": {
+      "$ref": "#/$defs/Person"
+    },
+    "summary": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Summary"
+      },
+      "contains": {
+        "type": "object",
+        "properties": {
+          "default": {
+            "const": true
+          }
+        },
+        "required": [
+          "default"
+        ]
+      },
+      "minContains": 0,
+      "maxContains": 1
+    },
+    "contact": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Contact"
+      }
+    },
+    "qr_codes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/QrCode"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Skill"
+      }
+    },
+    "tech_stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Language"
+      }
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Experience"
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Education"
+      }
+    },
+    "courses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Course"
+      }
+    },
+    "gdpr_clause": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ocv",
+    "person"
+  ],
+  "patternProperties": {
+    "^x-.+": {
+      "$ref": "#/$defs/JsonValue"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "JsonValue": {
+      "title": "JsonValue",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/JsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          }
+        }
+      ]
+    },
+    "Person": {
+      "title": "Person",
+      "type": "object",
+      "properties": {
+        "brand_initials": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "family_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first_name",
+        "family_name"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "properties": {
+            "first_name": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        },
+        {
+          "properties": {
+            "family_name": {
+              "type": "string",
+              "pattern": "\\S"
+            }
+          }
+        }
+      ]
+    },
+    "Summary": {
+      "title": "Summary",
+      "type": "object",
+      "properties": {
+        "position": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "default": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "position",
+        "description",
+        "default"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Contact": {
+      "title": "Contact",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "QrCode": {
+      "title": "QrCode",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 400,
+          "description": "Preferred square size in CSS pixels."
+        }
+      },
+      "required": [
+        "label",
+        "value",
+        "size"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Skill": {
+      "title": "Skill",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Self-assessment on a five-point scale, not a certification."
+        }
+      },
+      "required": [
+        "name",
+        "level"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Language": {
+      "title": "Language",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "level_text": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Self-assessment on a five-point scale, not a certification."
+        }
+      },
+      "required": [
+        "name",
+        "level_text",
+        "level"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Experience": {
+      "title": "Experience",
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "period",
+        "company",
+        "role",
+        "highlights"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Education": {
+      "title": "Education",
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string"
+        },
+        "school": {
+          "type": "string"
+        },
+        "degree": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "period",
+        "school",
+        "degree",
+        "detail"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Course": {
+      "title": "Course",
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "year",
+        "name"
+      ],
+      "patternProperties": {
+        "^x-.+": {
+          "$ref": "#/$defs/JsonValue"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
