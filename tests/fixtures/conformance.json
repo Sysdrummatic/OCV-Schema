@@ -1,0 +1,256 @@
+[
+  {
+    "name": "minimal document",
+    "valid": true,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      }
+    }
+  },
+  {
+    "name": "empty optional sections",
+    "valid": true,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "summary": [],
+      "contact": [],
+      "qr_codes": [],
+      "skills": [],
+      "tech_stack": [],
+      "languages": [],
+      "interests": [],
+      "experience": [],
+      "education": [],
+      "courses": [],
+      "gdpr_clause": ""
+    }
+  },
+  {
+    "name": "nested namespaced extension",
+    "valid": true,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": "",
+        "x-example": {
+          "anything": [
+            true,
+            null,
+            2
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "missing version",
+    "valid": false,
+    "document": {
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      }
+    }
+  },
+  {
+    "name": "unknown version",
+    "valid": false,
+    "document": {
+      "ocv": "1.1.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      }
+    }
+  },
+  {
+    "name": "empty names",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": " ",
+        "family_name": ""
+      }
+    }
+  },
+  {
+    "name": "flat legacy identity",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "first_name": "Anna",
+      "family_name": ""
+    }
+  },
+  {
+    "name": "private metadata",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "__ocv": {}
+    }
+  },
+  {
+    "name": "string instead of skills array",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "skills": "JavaScript"
+    }
+  },
+  {
+    "name": "numeric tech stack",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "tech_stack": [
+        123
+      ]
+    }
+  },
+  {
+    "name": "bad skill rating",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "skills": [
+        {
+          "name": "JavaScript",
+          "level": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "non-integer course year",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "courses": [
+        {
+          "year": 2024.5,
+          "name": "Course"
+        }
+      ]
+    }
+  },
+  {
+    "name": "QR size out of range",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "qr_codes": [
+        {
+          "label": "Portfolio",
+          "value": "https://example.com",
+          "size": 401
+        }
+      ]
+    }
+  },
+  {
+    "name": "string default",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "summary": [
+        {
+          "position": "Engineer",
+          "description": "",
+          "default": "true"
+        }
+      ]
+    }
+  },
+  {
+    "name": "two default summaries",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "summary": [
+        {
+          "position": "One",
+          "description": "",
+          "default": true
+        },
+        {
+          "position": "Two",
+          "description": "",
+          "default": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "invalid nested entry",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "experience": [
+        {
+          "period": "2020",
+          "company": "Example",
+          "role": "Engineer",
+          "highlights": "Text"
+        }
+      ]
+    }
+  },
+  {
+    "name": "removed locale field",
+    "valid": false,
+    "document": {
+      "ocv": "1.0.0",
+      "person": {
+        "first_name": "Anna",
+        "family_name": ""
+      },
+      "locale": "en"
+    }
+  }
+]
